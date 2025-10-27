@@ -56,10 +56,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
     expression = args.expression
     DIGITS = args.digits
-    DEBUG = args.debug
     ALL_DIGITS = args.all
+    DEBUG = args.debug
 
-    if DEBUG: print("Input:              ", expression)
+    if DEBUG: print(f"{'Input:':<22}", expression)
 
     if match := disallowed_characters.search(expression):
         raise ValueError(f"Character not allowed: {match[0]}")
@@ -69,16 +69,16 @@ if __name__ == "__main__":
     with mp.workdps(DIGITS):
         # Add mp. before names that are not escaped by backslashes
         expression = re.sub(name_pattern, r"mp.\1", expression)
-        if DEBUG: print("Replaced names:     ", expression)
+        if DEBUG: print(f"{'Replaced names:':<22}", expression)
 
         # Convert numbers to mpf or mpc
         expression = re.sub(number_pattern, replace_number_with_mpf, expression)
-        if DEBUG: print("Replaced numbers:   ", expression)
-        if DEBUG: print("Contents of NUMBERS: ", NUMBERS)
+        if DEBUG: print(f"{'Replaced numbers:':<22}", expression)
+        if DEBUG: print(f"{'Contents of NUMBERS:':<22}", NUMBERS)
 
         # Strip backslashes
         expression = expression.replace("\\", "")
-        if DEBUG: print("Removed backslashes:", expression)
+        if DEBUG: print(f"{'Removed backslashes:':<22}", expression)
 
         value = eval(expression, globals={"NUMBERS": NUMBERS, "mp": mp})
         if DEBUG:
