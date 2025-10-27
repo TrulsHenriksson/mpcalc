@@ -84,6 +84,9 @@ if __name__ == "__main__":
         if DEBUG:
             print("Result:", repr(value), sep="\n")
         elif ALL_DIGITS:
-            mp.nprint(value, DIGITS, strip_zeros=False)
+            try:
+                mp.nprint(mp.mpmathify(value), DIGITS, strip_zeros=False)
+            except TypeError:
+                mp.nprint(value, DIGITS, strip_zeros=False)
         else:
             print(value)
