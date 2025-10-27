@@ -26,8 +26,8 @@ allowed_characters = r"a-zA-Z0-9\s_:=" + re.escape(r"\().+-/*^&|,[]")
 disallowed_characters = re.compile(f"[^{allowed_characters}]")
 
 cannot_start_after = r"a-zA-Z\d_" + re.escape(r"\.")
-# Names must start with letters or underscores
-name_pattern = re.compile(rf"(?<![{cannot_start_after}])([a-zA-Z_][a-zA-Z0-9]*)", re.ASCII)
+# Names must start with letters or underscores, but can contain numbers after that
+name_pattern = re.compile(rf"(?<![{cannot_start_after}])([a-zA-Z_][a-zA-Z_0-9]*)", re.ASCII)
 # Digits with optional underscores in between
 int_pattern = r"\d[\d_]*(?<!_)"
 # [-] integer [.fraction] [e[-]exponent] [j]
