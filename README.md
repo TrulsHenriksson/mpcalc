@@ -99,3 +99,31 @@ be hooked up to the internet or be given more access than you trust it with.
     $ mpcalc -h
     ```
     You should see the help message confirming that it works.
+
+# Usage
+
+### Expression
+
+The expression is what's evaluated by the calculator. The only limitations on the expression is the characters it can contain (`a-zA-Z0-9 _.,:=+-/*^&|()[]\`), and what Python can evaluate using the `eval` function. Any function or constant name not escaped by a backslash (`\`) is taken from the `mpmath` module, and any non-escaped number is converted to `mp.mpf` (real) or `mp.mpc` (complex).
+
+For list of `mpmath` functions and constants, see [their documentation](https://mpmath.org/doc/current/#advanced-mathematics).
+
+Also note that `mpmath` features [plotting functions](https://mpmath.org/doc/current/plotting.html) if you have the Python library `matplotlib` installed. Run `pip install matplotlib` if you don't.
+
+### Command-line arguments
+
+- `-d [n]`, `--digits [n]`:
+    
+    Number of decimal digits that is used in the calculation. Defaults to 100.
+
+- `-a`, `--all`, `--all-digits`:
+
+    Show all digits of the result, even when it ends in zeros.
+
+- `--debug`:
+
+    Show debug output, which shows the steps taken to parse an expression.
+
+- `-h`, `--help`:
+
+    Show help message.
