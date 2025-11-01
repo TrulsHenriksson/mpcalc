@@ -81,9 +81,9 @@ if __name__ == "__main__":
         if DEBUG: print(f"{'Removed backslashes:':<25}", expression)
 
         value = eval(expression, globals={"NUMBERS": NUMBERS, "mp": mp})
-        if DEBUG:
-            print("Result:", repr(value), sep="\n")
-        elif ALL_DIGITS:
+        if DEBUG: print(f"{'Result:':<25}", end=" ")
+
+        if ALL_DIGITS:
             try:
                 mp.nprint(mp.mpmathify(value), DIGITS, strip_zeros=False)
             except TypeError:
